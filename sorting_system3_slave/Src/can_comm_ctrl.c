@@ -130,7 +130,7 @@ void can_comm(void)
 						WriteFlashOneWord(FLASH_SERVO_MOTOR_SPEED_ADDR,servo.speed);
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x01&&can_recv_buf.CAN_Recv_Buf0[3]==0x68){//设置posset
 						servo.position = can_recv_buf.CAN_Recv_Buf0[4]<<24|can_recv_buf.CAN_Recv_Buf0[5]<<16|can_recv_buf.CAN_Recv_Buf0[6]<<8|can_recv_buf.CAN_Recv_Buf0[7];
-						my_sprintf_32("pos",servo.position,4);
+						my_sprintf_32("pos",servo.position,1);
 						WriteFlashOneWord(FLASH_SERVO_MOTOR_POSITION_ADDR,servo.position);
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x00&&can_recv_buf.CAN_Recv_Buf0[3]==0x50){//设置伺服加减速
 						servo.adtime = can_recv_buf.CAN_Recv_Buf0[4]<<8|can_recv_buf.CAN_Recv_Buf0[5];

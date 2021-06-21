@@ -91,16 +91,14 @@ void uart2_sendstr(char *str, int len)
 	int i = 0;
 
 	if (len <= 0)	return;
-	//GPIO_SetBits(GPIOB,GPIO_Pin_15);
-	GPIO_SetBits(GPIOA,GPIO_Pin_4);
+	GPIO_SetBits(GPIOB,GPIO_Pin_15);
 	uart_485_delay(1000);
 	for(i=0; i<len; i++) {
 		USART_SendData(USART2, (unsigned short)str[i]);
 		while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 	}
 	uart_485_delay(uart2_485_delay);
-	//GPIO_ResetBits(GPIOB,GPIO_Pin_15);
-	GPIO_ResetBits(GPIOA,GPIO_Pin_4);
+	GPIO_ResetBits(GPIOB,GPIO_Pin_15);
 }
 
 void USART2_IRQHandler(void) 
@@ -110,8 +108,8 @@ void USART2_IRQHandler(void)
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) {
 		
 		data = USART_ReceiveData(USART2);
-//		USART_SendData(USART1, (unsigned short)data);
-//		while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+		//USART_SendData(USART1, (unsigned short)data);
+		//while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
 		usart2_rx_buffer[usart2_rx_len++] = data;
  		if (usart2_rx_len >= USART2_REC_LEN) { // overflow
  					usart2_rx_len = USART2_REC_LEN - 1;

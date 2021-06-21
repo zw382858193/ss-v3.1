@@ -198,8 +198,9 @@ void ResetServoBelt(int speed)
 	int init_tick,check;
 	
 	while(1){
+		my_sprintf_32("a",state,1);
 		if(state == 0){
-			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4)==(uint32_t)Bit_RESET){
+			if((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==(uint32_t)Bit_SET) && (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)==(uint32_t)Bit_SET)){
 				state++;
 				init_tick = get_system_tick();
 			}else{
@@ -207,7 +208,7 @@ void ResetServoBelt(int speed)
 			}
 		}else if(state == 1){
 			if(retTickDiff(init_tick)>10){
-				if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4)==(uint32_t)Bit_RESET){
+				if((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==(uint32_t)Bit_SET) && (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)==(uint32_t)Bit_SET)){
 					break;
 				}else{
 					state--;
@@ -215,10 +216,7 @@ void ResetServoBelt(int speed)
 			}
 		}else if(state==10){
 			rs232_clear4();
-			servo.PosSpeed[4]=(speed>>8)&0xff;
-			servo.PosSpeed[5]=speed&0xff;
-			set_mobus_crc(servo.PosSpeed,servo.speed,4);
-			debug_out4((char *)servo.PosSpeed,8);
+			set_mobus_crc(servo.PosSpeed,speed,4);
 			init_tick=get_system_tick();
 			state++;
 		}else if(state==11){
@@ -237,27 +235,55 @@ void ResetServoBelt(int speed)
 				}
 			}
 		}else if(state == 12){
+			if((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==(uint32_t)Bit_SET) && (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)==(uint32_t)Bit_RESET)){
+				state = 15;
+			}if((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==(uint32_t)Bit_RESET) && (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)==(uint32_t)Bit_SET)){
+				state = 13;
+			}else{
+				state = 15;
+			}
+		}else if(state == 13){
 			rs232_clear4();
-			send_servor_motor_pos(servo.SetPos,servo.position);
+			send_servor_motor_pos(servo.SetPos,0-servo.position);
 			init_tick = get_system_tick();
 			state++;
-		}else if(state == 13){
+		}else if(state == 14){
 			if(retTickDiff(init_tick)>30){
 				if(memcmp(get_rs232_buf4(),servo.SetPos,strlen((char *)servo.SetPos))==0){
-					state++;
+					state=100;
 					init_tick = get_system_tick();
 				}else{
 					if(check < 2){
 						check++;
 						state--;
 					}else{
-						state++;
+						state=100;
+						init_tick = get_system_tick();
+					}
+				}
+			}
+		}else if(state == 15){
+			rs232_clear4();
+			send_servor_motor_pos(servo.SetPos,servo.position);
+			init_tick = get_system_tick();
+			state++;
+		}else if(state == 16){
+			if(retTickDiff(init_tick)>30){
+				if(memcmp(get_rs232_buf4(),servo.SetPos,strlen((char *)servo.SetPos))==0){
+					state=100;
+					init_tick = get_system_tick();
+				}else{
+					if(check < 2){
+						check++;
+						state--;
+					}else{
+						state=100;
 						init_tick = get_system_tick();
 					}
 				}
 			}
 		}else if(state == 100){
-			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4)==(uint32_t)Bit_RESET){
+			if((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==(uint32_t)Bit_SET) && (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)==(uint32_t)Bit_SET)){
 				state++;
 			}else if(retTickDiff(init_tick)>5000){
 				//
@@ -265,10 +291,75 @@ void ResetServoBelt(int speed)
 			}
 		}else if(state == 101){
 			if(retTickDiff(init_tick)>10){
-				if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4)==(uint32_t)Bit_RESET){
-					break;
+				if((GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)==(uint32_t)Bit_SET) && (GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)==(uint32_t)Bit_SET)){
+					state++;
 				}else{
 					state--;
+				}
+			}
+		}else if(state == 102){
+		rs232_clear4();
+		//send_servor_motor_data(servo.stop,21);
+	  send_servor_motor_data(servo.stop,0x10);///¼±Í£ 0x10
+	  //send_servor_motor_pos(servo.SetPos,0);
+		init_tick = get_system_tick();
+		state++;
+	}else if(state == 103){
+		if(retTickDiff(init_tick)>50){
+			if(memcmp(get_rs232_buf4(),servo.stop,8)==0){
+			//if(memcmp(get_rs232_buf4(),servo.SetPos,strlen((char *)servo.SetPos))==0){
+				state++;
+				//break;
+			}else{
+				if(check < 3){
+					check++;
+					state--;
+				}else{
+					state++;
+					//break;
+				}
+			}
+		}
+	}else if(state==104){
+			rs232_clear4();
+			set_mobus_crc(servo.PosSpeed,servo.speed,4);
+			init_tick=get_system_tick();
+			state++;
+	}else if(state==105){
+			if(retTickDiff(init_tick)>50){
+				if(memcmp(get_uart4_buf(),servo.PosSpeed,8)){
+					
+					check=0;
+					state++;
+				}else{
+					if(check<3){
+						check++;
+						state--;
+					}else{
+						check=0;
+						state++;
+					}
+				}
+			}
+		}else if(state==106){
+			rs232_clear4();
+			send_servor_motor_data(servo.enable,0x01);
+			init_tick=get_system_tick();
+			state++;
+		}else if(state==107){
+			if(retTickDiff(init_tick)>50){
+				if(memcmp(get_uart4_buf(),servo.enable,8)){
+					
+					check=0;
+					break;
+				}else{
+					if(check<3){
+						check++;
+						state--;
+					}else{
+						check=0;
+						break;
+					}
 				}
 			}
 		}
@@ -300,7 +391,6 @@ int main(void)
   __enable_irq();	
 	SysTick_Config(SystemCoreClock / 1000);
 	rs232_uart_init1(9600);
-
 	#ifdef BLDC
  	rs232_uart_init2(9600);//9600
 	#else
@@ -313,7 +403,8 @@ int main(void)
 	servo_motor_rs485_init();
 	multiInit();
 	flash_init();
-	flash_read();
+	//flash_read();
+	ResetServoBelt(100);
 	device_init();
 	CAN_Mode_Init(BaudRate250Kbps,CAN_Mode_Normal,0,0x0000,0x0000);
 	can_recv_buf.Recv_Buf_Len0=0;
@@ -325,5 +416,6 @@ int main(void)
 		goods_export(30);
 		StopKey();
 		LockKey();
+		rs232_process1();
  	}
 }

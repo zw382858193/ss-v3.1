@@ -38,11 +38,11 @@ void WriteFlashOneWord(uint32_t WriteAddress, uint32_t WriteData)
 
 void flash_read(void)
 {
-//	char sbuf[128];
-//	memset(sbuf,0,sizeof(sbuf));
-//	sprintf(sbuf,"car_adtime=%d,car_speed=%d,car_tick=%d,pos_speed=%d,pos_adtime=%d,pos_set=%d,id=%d\r",treadmill.adtime,treadmill.speed,uart2_485_delay\
-//	,servo.speed,servo.adtime,servo.position,device.id);
-//	debug_out4(sbuf,strlen(sbuf));
+	char sbuf[128];
+	memset(sbuf,0,sizeof(sbuf));
+	sprintf(sbuf,"car_adtime=%d,car_speed=%d,car_tick=%d,pos_speed=%d,pos_adtime=%d,pos_set=%d,id=%d\r",treadmill.adtime,treadmill.speed,uart2_485_delay\
+	,servo.speed,servo.adtime,servo.position,device.id);
+	debug_out1(sbuf,strlen(sbuf));
 }
 
 void flash_init(void)

@@ -153,6 +153,7 @@ void id_run_ctrl(unsigned char *input_str,unsigned short array_0_data)
 	input_str[6] = (short)(crc16 >> 8);
 	input_str[7] = (short)(crc16 & 0xff);
 	debug_out2((char *)input_str,8);
+	//debug_out1((char *)input_str,8);
 }
 
 void set_addr_mobus_crc(unsigned char *input_str,unsigned int addr,unsigned int data)

@@ -7,8 +7,8 @@
 #define BLDC
 #define LICHUANG
 #define DEVICESNUM 128
-#define MAX_POS_SET 225000
-#define MIN_POS_SET -225000
+#define MAX_POS_SET 300000
+#define MIN_POS_SET -300000
 
 typedef struct {
 	uchar SETID[8];

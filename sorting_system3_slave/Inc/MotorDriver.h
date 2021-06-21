@@ -71,6 +71,7 @@ typedef struct {
 	uchar enable[8];
 	uchar disable[8];
 	uchar save[8];
+	uchar stop[8];
 	int speed;
 	int adtime;
 	int position;

@@ -18,9 +18,10 @@ void multiInit(void)
 {
 	int i;
 	device.goodsnumber=0;//
-	windows[i].goodslist = 0;//货物排队
+	//windows[i].goodslist = 0;//货物排队
 	servo.work_status=WAIT;
 	for(i=0;i<DEVICESNUM;i++){
+		windows[i].goodslist = 0;//货物排队
 		windows[i].Win=0;
 		windows[i].BillCodeAndPortCodeLen=0;
 	}
@@ -90,6 +91,17 @@ void servo_motor_rs485_init(void)
 		uchar servoEnable[8]={0x01,0x06,0x01,0xa4,0x00,0x01,0x08,0x15};//使能
 		uchar servoDisable[8]={0x01,0x06,0x01,0xa4,0x00,0x00,0xc9,0xd5};//失能
 		uchar save[8] ={0x01,0x06,0x01,0xa7,0x08,0x01,0xff,0xd5};//保存参数
+		uchar stop[8]={0x01,0x06,0x01,0xa4,0x00,0x10};
+		/*
+		PA_080 DI0功能配置 0 伺服使能
+		PA_081 DI1功能配置 1 报警清清除
+		PA_082 DI2功能配置 2 顺时针行程限位
+		PA_083 DI3功能配置 3 逆时针行程限位
+		PA_084 DI4功能配置 21 紧急停止
+		PA_085 DI5功能配置 20 位置装置信号
+		PA_086 DI6功能配置 17 原点开关
+		PA_087 DI7功能配置 16 回零启动
+		*/
 		
 		memcpy(servo.SetPos,SetPos,13);
 		memcpy(servo.DisplayMotorSpeed,DisplayMotorSpeed,8);
@@ -115,7 +127,7 @@ void servo_motor_rs485_init(void)
 		memcpy(servo.enable,servoEnable,8);
 		memcpy(servo.disable,servoDisable,8);
 		memcpy(servo.save,save,8);
-		
+		memcpy(servo.stop,stop,6);
 	//#endif
 }
 
@@ -614,6 +626,8 @@ void rs232_process1(void)//UART1
 		}else if (memcmp(buf, "pos_set=", strlen("pos_set="))==0) {
 			char *q;
 			servo.position = strtol((char *)&buf[strlen("pos_set=")],&q,10);
+			send_servor_motor_pos(servo.SetPos,servo.position);
+			WriteFlashOneWord(FLASH_SERVO_MOTOR_POSITION_ADDR,servo.position);
 			debug_out1("succ\r",5);
 		}else if (memcmp(buf, "pos_speed=", strlen("pos_speed="))==0){
 			servo.speed = strtol((char *)&buf[strlen("pos_speed=")],NULL,10);
@@ -692,6 +706,7 @@ void rs232_process1(void)//UART1
 			debug_out1("succ\r",5);
 		}else if(memcmp(buf, "initServo", strlen("initServo"))==0){
 			initServoLiChuang();
+			debug_out1("succ",4);
 		}else if(memcmp(buf, "reset", strlen("reset"))==0){
 			reset();
 		}else {

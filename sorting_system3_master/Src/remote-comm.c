@@ -758,8 +758,11 @@ void rs232_process1(void)//UART1
 		}else if(memcmp(buf, "save", strlen("save"))==0){
 			WriteFlashOneWord(FLASH_CAR_SPEED_DATA_ADDR,treadmill.speed);
 			WriteFlashOneWord(FLASH_CAR_ADTIME_DATA_ADDR,treadmill.adtime);
-			WriteFlashOneWord(FLASH_CAR_RS485_TICK_ADDR,uart2_485_delay);
 			debug_out1("succ\r",5);
+		}else if(memcmp(buf, "uart2_485_delay=",16)==0){
+			uart2_485_delay = strtol((char *)&buf[strlen("uart2_485_delay=")],NULL,10);
+			WriteFlashOneWord(FLASH_CAR_RS485_TICK_ADDR,uart2_485_delay);
+			debug_out1("succ",4);
 		}else if(memcmp(buf, "qcheck",6)==0){//heartbeat
 			debug_out1(heartbeat,heartbeat[3]+4);
 		}else if(memcmp(buf, "qsetid",6)==0){//set id 71 73 65 74 69 64 00 03 0d

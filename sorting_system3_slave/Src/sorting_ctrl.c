@@ -182,12 +182,13 @@ void ServoCtrl(void)
 		}
 	}else if(state == 30){
 		rs232_clear4();
-		debug_out4((char *)servo.disable,8);
+		//debug_out4((char *)servo.disable,8);
+		send_servor_motor_data(servo.enable,0x10);//¼±Í£
 		DelayTick = get_system_tick();
 		state++;
 	}else if(state == 31){
 		if(retTickDiff(DelayTick)>30){
-			if(memcmp(get_rs232_buf4(),servo.disable,strlen((char *)servo.disable))==0){
+			if(memcmp(get_rs232_buf4(),servo.disable,strlen((char *)servo.enable))==0){
 				state =0;
 			}else{
 				if(check < 10){
@@ -319,6 +320,7 @@ void StopKey(void)//pc6 ¼±Í£
 {
 	static int state=0;
 	static unsigned int tick;
+	int i;
 	uchar CanSendMsg[8]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 	if(state==0){//¼±Í£
 		if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6)==(uint32_t)Bit_RESET){
@@ -329,11 +331,12 @@ void StopKey(void)//pc6 ¼±Í£
 		if(retTickDiff(tick)>10){
 			if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6)==(uint32_t)Bit_RESET){
 				state=2;
+				
 			}else{
 				state=0;
 			}
 		}
-	}else if(state == 2){
+	}else if(state == 2){//¼ÓËø
 		CanSendMsg[0]=device.id;
 		CanSendMsg[1]=0x73;
 		CanSendMsg[2]=0x74;
@@ -342,6 +345,11 @@ void StopKey(void)//pc6 ¼±Í£
 		Can_Send_Msg(0x00,CanSendMsg,8);//×î¸ß¼¶±ð
 		tick=get_system_tick();
 		device.status|=0x01;
+		servo.work_status=STOP;
+		treadmill.work_status=STOP;
+		for(i=0;i<DEVICESNUM;i++){
+			windows[i].Win=0;
+		}device.goodsnumber=0;
 		state++;
 	}else if(state == 3){
 		if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6)==(uint32_t)Bit_SET){
@@ -352,7 +360,7 @@ void StopKey(void)//pc6 ¼±Í£
 		}
 	}else if(state == 4){
 		if(retTickDiff(tick)>10){
-			if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6)==(uint32_t)Bit_SET){
+			if(GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_6)==(uint32_t)Bit_SET){//½âËø
 				state=0;
 				CanSendMsg[0]=device.id;
 				CanSendMsg[1]=0x75;
