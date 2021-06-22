@@ -404,7 +404,7 @@ int main(void)
 	multiInit();
 	flash_init();
 	//flash_read();
-	ResetServoBelt(100);
+	ResetServoBelt(200);
 	device_init();
 	CAN_Mode_Init(BaudRate250Kbps,CAN_Mode_Normal,0,0x0000,0x0000);
 	can_recv_buf.Recv_Buf_Len0=0;
