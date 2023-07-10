@@ -87,7 +87,8 @@ void servo_motor_rs485_init(void)
 		uchar CommCtrlDI[8]={0x01,0x06,0x01,0xa0,0x00,0xff,0xc8,0x54};//通讯控制DI口
 		uchar ServoEnableSelection[8]={0x01,0x06,0x00,0x8f,0x00,0x01,0x79,0xe1};//伺服使能选择 自动使能
 		uchar clean[8]={0x01,0x06,0x01,0xa4,0x00,0x02,0x48,0x14};//清除报警
-		uchar check[8]={0x01,0x03,0x04,0x78,0x00,0x01,0x05,0x23};//检查设备
+		//uchar check[8]={0x01,0x03,0x01,0xde,0x00,0x01,0x05,0x23};//检查设备
+		uchar check[8]={0x01,0x03,0x01,0xd0,0x00,0x01,0x84,0x0f};//检查设备
 		uchar servoEnable[8]={0x01,0x06,0x01,0xa4,0x00,0x01,0x08,0x15};//使能
 		uchar servoDisable[8]={0x01,0x06,0x01,0xa4,0x00,0x00,0xc9,0xd5};//失能
 		uchar save[8] ={0x01,0x06,0x01,0xa7,0x08,0x01,0xff,0xd5};//保存参数
@@ -101,6 +102,7 @@ void servo_motor_rs485_init(void)
 		PA_085 DI5功能配置 20 位置装置信号
 		PA_086 DI6功能配置 17 原点开关
 		PA_087 DI7功能配置 16 回零启动
+		PA_089 DO1功能配置 1 伺服报警
 		*/
 		
 		memcpy(servo.SetPos,SetPos,13);
@@ -518,7 +520,7 @@ void treadmill_init(void)
 	#endif
 	memcpy(treadmill.ERR_RESET,ERR_RESET,6);	
 	memcpy(treadmill.BAUDRATE,BAUDRATE,6);
-	treadmill.work_onoff=ON;
+//	treadmill.work_onoff=ON;
 }
 
 
@@ -577,26 +579,10 @@ void rs232_process1(void)//UART1
 			int value;
 			value=strtol((char *)&buf[strlen("win")],NULL,10);
 			if(value>0){
-				int i;
-				int ret;
-				u8 CanSendMsg[8]={0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
-				for(i=0;i<DEVICESNUM;i++){
-					if(windows[i].Win==0){
-						//can send
-						windows[i].Win=((value+1)/2)+1;
-						CanSendMsg[0]=windows[i].Win;
-						CanSendMsg[1]=value;
-						ret=Can_Send_Msg(device.id,CanSendMsg,8);
-						if(ret == 0){
-							debug_out2("send failed\n",strlen("send failed\n"));
-						}
-						windows[i].Win=value;
-//						windows[i].goodspoition=0;
-						if(device.goodsnumber<i){
-							device.goodsnumber=i;
-						}
-						break;
-					}
+				if(value==1){
+					servo.work_status=WIN1;
+				}else{
+					servo.work_status=WIN2;
 				}
 			}
 			debug_out1("win\r",4);
@@ -611,17 +597,19 @@ void rs232_process1(void)//UART1
 			device.id = strtol((char *)&buf[strlen("device_id=")],NULL,10);
 			WriteFlashOneWord(FLASH_DEVICE_ID_ADDR,device.id);
 			debug_out1("succ\r",5);
-		}else if (memcmp(buf, "work_off", strlen("work_off"))==0) {
-			treadmill.work_onoff=OFF;
-			debug_out1("succ\r",5);
-		}else if (memcmp(buf, "work_on", strlen("work_on"))==0) {
-			treadmill.work_onoff=ON;
-			debug_out1("succ\r",5);
-		}else if (memcmp(buf, "start", strlen("start"))==0) {
-			debug_out2((char *)servo.enable,8);
+		}
+//		else if (memcmp(buf, "work_off", strlen("work_off"))==0) {
+//			treadmill.work_onoff=OFF;
+//			debug_out1("succ\r",5);
+//		}else if (memcmp(buf, "work_on", strlen("work_on"))==0) {
+//			treadmill.work_onoff=ON;
+//			debug_out1("succ\r",5);
+//		}
+		else if (memcmp(buf, "start", strlen("start"))==0) {
+			debug_out4((char *)servo.enable,8);
 			debug_out1("succ\r",5);
 		}else if (memcmp(buf, "stop", strlen("stop"))==0) {
-			debug_out2((char *)servo.disable,8);
+			debug_out4((char *)servo.disable,8);
 			debug_out1("succ\r",5);
 		}else if (memcmp(buf, "pos_set=", strlen("pos_set="))==0) {
 			char *q;
@@ -632,7 +620,8 @@ void rs232_process1(void)//UART1
 		}else if (memcmp(buf, "pos_speed=", strlen("pos_speed="))==0){
 			servo.speed = strtol((char *)&buf[strlen("pos_speed=")],NULL,10);
 			
-			send_servor_motor_data(servo.PosSpeed,value);
+			send_servor_motor_data(servo.PosSpeed,servo.speed);
+			WriteFlashOneWord(FLASH_SERVO_MOTOR_SPEED_ADDR,servo.speed);
 			debug_out1("succ\r",5);
 		}else if (memcmp(buf, "pos_adtime=", strlen("pos_adtime="))==0){
 			servo.adtime = strtol((char *)&buf[strlen("pos_adtime=")],NULL,10);
@@ -648,7 +637,9 @@ void rs232_process1(void)//UART1
 		}else if(memcmp(buf, "car_speed=", strlen("car_speed="))==0){
 			value = strtol((char *)&buf[strlen("car_speed=")],NULL,10);
 			treadmill.speed = value;
-			id_set_mobus_crc((uchar *)treadmill.SET_SPEED,value,CAR1);
+			//id_set_mobus_crc((uchar *)treadmill.SET_SPEED,value,CAR1);
+			treadmill.work_status=SETSPEED;
+			WriteFlashOneWord(FLASH_CAR_SPEED_DATA_ADDR,treadmill.speed);
 			debug_out1("succ\r",5);
 		}else if(memcmp(buf, "car_adtime=", strlen("car_adtime="))==0){
 			value = strtol((char *)&buf[strlen("car_adtime=")],NULL,10);
@@ -680,7 +671,6 @@ void rs232_process1(void)//UART1
 			flash_read();
 
 		}else if(memcmp(buf, "save", strlen("save"))==0){
-			WriteFlashOneWord(FLASH_CAR_SPEED_DATA_ADDR,treadmill.speed);
 			WriteFlashOneWord(FLASH_CAR_ADTIME_DATA_ADDR,treadmill.adtime);
 			WriteFlashOneWord(FLASH_CAR_RS485_TICK_ADDR,uart2_485_delay);
 			debug_out1("succ\r",5);
@@ -704,6 +694,11 @@ void rs232_process1(void)//UART1
 
 			debug_out2((char *)servo.clean,8);
 			debug_out1("succ\r",5);
+		}else if(memcmp(buf, "check", strlen("check"))==0){
+			char CanSendMsg[2];
+					CanSendMsg[0] = device.motor_error_code.car_error;
+					CanSendMsg[1] = device.motor_error_code.servo_error;
+					debug_out1(CanSendMsg,2);
 		}else if(memcmp(buf, "initServo", strlen("initServo"))==0){
 			initServoLiChuang();
 			debug_out1("succ",4);

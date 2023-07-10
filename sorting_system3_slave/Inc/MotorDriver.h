@@ -32,15 +32,15 @@ typedef struct {
 	uchar BLDC_RUN_DIR[8];
 	uchar FIRST_XIAOCHE_FOREWARD[8];
 	uchar FIRST_XIAOCHE_BACKWARD[8];
-	int RUN_TICK;//单个设备运行时间
-	int first_deltime;//第一个设备运行减少时间
+//	int RUN_TICK;//单个设备运行时间
+//	int first_deltime;//第一个设备运行减少时间
 	int adtime;//加减速
-	int next_state_flag;//退出当前运行函数或者跳过当前小车
-	unsigned short first_xiaoche_dir;//改变第一个小车的运行方向
+//	int next_state_flag;//退出当前运行函数或者跳过当前小车
+//	unsigned short first_xiaoche_dir;//改变第一个小车的运行方向
 	int speed;
-	unsigned int loop_i;
-	unsigned short run_mode;//函数运行模式改变
-	int work_onoff;
+//	unsigned int loop_i;
+//	unsigned short run_mode;//函数运行模式改变
+//	int work_onoff;
 	int work_status;
 	
 }treadmill_def;
@@ -90,15 +90,16 @@ typedef struct{
 extern window windows[DEVICESNUM];
 
 typedef struct {
-	unsigned short car_error;
-	unsigned short servo_error;
+	char car_error;
+	char servo_error;
 
 }motor_error_code_stu;
 
 
 typedef struct{
 	unsigned short id;
-	unsigned short goodsnumber;
+	unsigned int goodsnumber;
+	unsigned int goodsCome;
 	unsigned short sensor_position[DEVICESNUM];
 	short heartbeat;
 	motor_error_code_stu motor_error_code;

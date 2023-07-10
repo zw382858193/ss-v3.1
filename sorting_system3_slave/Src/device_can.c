@@ -174,7 +174,7 @@ u8 Can_Send_Msg(unsigned int id,u8* msg,u8 len)
   TxMessage.RTR=CAN_RTR_DATA;//0;
   TxMessage.DLC=len;
 	//GPIO_ResetBits(GPIOC,GPIO_Pin_7);
-  for(i=0;i<8;i++)
+  for(i=0;i<len;i++)
 		TxMessage.Data[i]=msg[i];
   mbox= CAN_Transmit(CAN1, &TxMessage);
   i=0;
@@ -205,14 +205,14 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 	Recv_CAN_Data.sensor_position[Recv_CAN_Data.Recv_CAN_ID]=RxMessage.Data[3];
 #endif
 
-	if((RxMessage.StdId != device.id) && (RxMessage.StdId > 0x01)){
+	//if((RxMessage.StdId != device.id) && (RxMessage.StdId > 0x01)){
+	if(RxMessage.StdId > 0x01){
 		return;
 	}
 	for(i=0;i<CAN_RECV_BUF_LEN;i++){
 	 can_recv_buf.CAN_Recv_Buf0[i]=RxMessage.Data[i];
 	 can_recv_buf.Recv_Buf_Len0++;
 	}
-	uart4_sendstr((char *)can_recv_buf.CAN_Recv_Buf0,8);
 	if((can_recv_buf.CAN_Recv_Buf0[1]==0x73)&&(can_recv_buf.CAN_Recv_Buf0[2]==0x74)&&(can_recv_buf.CAN_Recv_Buf0[3]==0x6f)&&(can_recv_buf.CAN_Recv_Buf0[4]==0x70)){
 		//WorkStatus=can_recv_buf.CAN_Recv_Buf0[0];
 		servo.work_status=STOP;
@@ -234,7 +234,7 @@ u8 Can_Receive_Msg(u8 *buf)
 		CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
   for(i=0;i<8;i++){
     buf[i]=RxMessage.Data[i];  
-		//my_sprintf_32("rxbuf",RxMessage.Data[i]);
+		//my_sprintf_32("rxbuf",RxMessage.Data[i],1);
 	}
 	return RxMessage.DLC;	
 }

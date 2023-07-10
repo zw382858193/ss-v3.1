@@ -13,7 +13,7 @@
 #define uchar unsigned char
 #endif
 
-
+#define SHENGPAI 1
 #define CAR1 0x01
 extern unsigned int g_system_tick;
 extern unsigned short uart2_485_delay;
@@ -28,8 +28,10 @@ enum{
 	WIN2,
 	FOREWARD,
 	BACKWARD,
+	START,
 	STOP,
 	CHECK,
+	SETSPEED,
 	WAIT
 };
 
@@ -93,12 +95,13 @@ unsigned int retTickDiff(unsigned int tick);
 
 void initServoLiChuang(void);
 void Car1init(void);
-void ServoCtrl(void);
+void ServoCtrl(int ms);
 void CarCtrl(void);
 void goods_export(unsigned int TimeOutTick);
 
 void StopKey(void);
 void LockKey(void);
 
+void ResetServoBelt(int speed);
 
 #endif

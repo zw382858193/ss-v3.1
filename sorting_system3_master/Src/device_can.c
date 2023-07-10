@@ -3,6 +3,7 @@
 #include "uart.h"
 #include "MotorDriver.h"
 #include "config.h"
+#include "MessageQue.h"
 #include <stdarg.h>
 
 int WorkStatus;
@@ -185,44 +186,27 @@ u8 Can_Send_Msg(unsigned int id,u8* msg,u8 len)
 #define CAN_DEBUG 0
 void USB_LP_CAN1_RX0_IRQHandler(void)
 {
-	int i=0;
+	//int i=0;
  	CanRxMsg RxMessage;
   CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
-	
-//	Recv_CAN_Data.Recv_CAN_ID = RxMessage.ExtId;
-//	Recv_CAN_Data.motor_error_code.car_error=RxMessage.Data[0];
-//	Recv_CAN_Data.motor_error_code.servo_error=RxMessage.Data[1];
-//	Recv_CAN_Data.goodsnumber=RxMessage.Data[2];
-//	Recv_CAN_Data.sensor_position[Recv_CAN_Data.Recv_CAN_ID]=RxMessage.Data[3];
-	
-//	switch(RxMessage.Data[0]){//can comm mode
-//		case 0x01://heartbeat
-//			Slave_Device.Slave_Device_Car_ONLINE[RxMessage.StdId]=RxMessage.Data[1];
-//			Slave_Device.Slave_Device_Servo_ONLINE[RxMessage.StdId]=RxMessage.Data[2];
-//			break;
-//		case 0x02://sensor input
-//			Slave_Device.Sensor_Position[RxMessage.StdId]=RxMessage.Data[1];
-//			if(Slave_Device.Sensor_Position[RxMessage.StdId]==0){
-//				GPIO_ResetBits(GPIOC,GPIO_Pin_7);
-//			}else if(Slave_Device.Sensor_Position[RxMessage.StdId]==1){
-//				GPIO_SetBits(GPIOC,GPIO_Pin_7);
-//			}
-//			break;
-//		default:break;
-//	}
-
-	for(i=0;i<CAN_RECV_BUF_LEN;i++){
-		can_recv_buf.Recv_Buf_Len0++;
-		can_recv_buf.CAN_Recv_Buf0[i]=RxMessage.Data[i];
-	}
-	if((can_recv_buf.CAN_Recv_Buf0[1]==0x73)&&(can_recv_buf.CAN_Recv_Buf0[2]==0x74)&&(can_recv_buf.CAN_Recv_Buf0[3]==0x6f)&&(can_recv_buf.CAN_Recv_Buf0[4]==0x70)){
+	if((RxMessage.Data[1]==0x73)&&(RxMessage.Data[2]==0x74)&&(RxMessage.Data[3]==0x6f)&&(RxMessage.Data[4]==0x70)){//急停命令
 		WorkStatus=can_recv_buf.CAN_Recv_Buf0[0];
-	}else if((can_recv_buf.CAN_Recv_Buf0[1]==0x75)&&(can_recv_buf.CAN_Recv_Buf0[2]==0x6e)&&(can_recv_buf.CAN_Recv_Buf0[3]==0x73)&&(can_recv_buf.CAN_Recv_Buf0[4]==0x74)&&(can_recv_buf.CAN_Recv_Buf0[5]==0x6f)&&(can_recv_buf.CAN_Recv_Buf0[6]==0x70)){
-		WorkStatus=0;
-	}else if(can_recv_buf.CAN_Recv_Buf0[0]=='e'&&can_recv_buf.CAN_Recv_Buf0[1]=='n'&&can_recv_buf.CAN_Recv_Buf0[2]=='d'){
-		debug_out1((char *)can_recv_buf.CAN_Recv_Buf0,can_recv_buf.Recv_Buf_Len0);//分拣完成上报
+	}else if((RxMessage.Data[1]==0x75)&&(RxMessage.Data[2]==0x6e)&&(RxMessage.Data[3]==0x73)&&(RxMessage.Data[4]==0x74)&&(RxMessage.Data[5]==0x6f)&&(RxMessage.Data[6]==0x70)){
+		WorkStatus=0;//解除急停
 	}
-	
+//	if(can_recv_buf.Recv_Buf_Len0==0){
+//		for(i=0;i<RxMessage.DLC;i++){//8
+//			can_recv_buf.Recv_Buf_Len0++;
+//			can_recv_buf.CAN_Recv_Buf0[i]=RxMessage.Data[i];
+//		}
+//	}else if(can_recv_buf.Recv_Buf_Len1==0){
+//		for(i=0;i<RxMessage.DLC;i++){
+//			can_recv_buf.Recv_Buf_Len1++;
+//			can_recv_buf.CAN_Recv_Buf1[i]=RxMessage.Data[i];
+//		}
+//	}
+	Adv_Data_Fill(RxMessage.Data,RxMessage.DLC);
+	//debug_out1((char *)can_recv_buf.CAN_Recv_Buf0,can_recv_buf.Recv_Buf_Len0);
 }
 
 u8 Can_Receive_Msg(u8 *buf)

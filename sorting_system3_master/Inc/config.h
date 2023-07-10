@@ -15,9 +15,11 @@
 
 
 #define CAR1 0x01
+#define MaxGoodsNumber DEVICESNUM
 extern unsigned int g_system_tick;
 extern unsigned short uart2_485_delay;
 extern int WorkStatus;
+
 
 enum{
 	ON,
@@ -83,13 +85,22 @@ void car_run_ctrl_func(unsigned int tick_delay);
 uint8_t ret_ir(void);
 void ir_win(void);
 
+void GoodStructInit(void);
+void uart1RecvFinish(int delay);
+
+void SlaveDeviceStatus(void);
 void set_addr_mobus_crc(unsigned char *input_str,unsigned int addr,unsigned int data);
 void id_set_mobus_crc(unsigned char *input_str,unsigned int data,unsigned short array_0_data);
 void set_mobus_crc(unsigned char *input_str,unsigned int data);
 void id_run_ctrl(unsigned char *input_str,unsigned short array_0_data);
 unsigned int retTickDiff(unsigned int tick);
 
+void IRCheckFunc(void);
+int RetIRCheckFunc(void);
+void ClearIRCheck(void);
 void check_car_and_servo(unsigned int tick_delay);
+void RunCar1(int tickDelay);
+void EXTIX_Init(void);
 
 
 #endif

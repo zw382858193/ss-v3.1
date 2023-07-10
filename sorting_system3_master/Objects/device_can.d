@@ -1,15 +1,16 @@
 .\objects\device_can.o: Src\device_can.c
 .\objects\device_can.o: ./Inc/device_can.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h
-.\objects\device_can.o: D:\zw-sorting\SrotingSystemV3\sorting_system3_master\RTE\RTE_Components.h
+.\objects\device_can.o: D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_master\RTE\RTE_Components.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h
 .\objects\device_can.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
-.\objects\device_can.o: D:\zw-sorting\SrotingSystemV3\sorting_system3_master\RTE\Device\STM32F103RC\stm32f10x_conf.h
+.\objects\device_can.o: D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_master\RTE\Device\STM32F103RC\stm32f10x_conf.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_can.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h
+.\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_exti.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_flash.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
 .\objects\device_can.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_iwdg.h
@@ -23,4 +24,5 @@
 .\objects\device_can.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\device_can.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\device_can.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\device_can.o: ./Inc/MessageQue.h
 .\objects\device_can.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

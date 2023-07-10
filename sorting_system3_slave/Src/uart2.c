@@ -97,7 +97,11 @@ void uart2_sendstr(char *str, int len)
 		USART_SendData(USART2, (unsigned short)str[i]);
 		while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 	}
+	#if SHENGPAI
+	uart_485_delay(5500);
+	#else
 	uart_485_delay(uart2_485_delay);
+	#endif
 	GPIO_ResetBits(GPIOB,GPIO_Pin_15);
 }
 

@@ -92,7 +92,7 @@ void uart2_sendstr(char *str, int len)
 
 	if (len <= 0)	return;
 	GPIO_SetBits(GPIOB,GPIO_Pin_15);
-	uart_485_delay(1000);
+	uart_485_delay(100);
 	for(i=0; i<len; i++) {
 		USART_SendData(USART2, (unsigned short)str[i]);
 		while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);

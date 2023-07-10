@@ -1,6 +1,6 @@
 Dependencies for Project 'sorting_system3_slave', Target 'Target 1': (DO NOT MODIFY !)
-F (.\Src\app.c)(0x60CFF9C3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\app.o --omf_browse .\objects\app.crf --depend .\objects\app.d)
-I (./Inc/config.h)(0x60C3338B)
+F (.\Src\app.c)(0x64804D82)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\app.o --omf_browse .\objects\app.crf --depend .\objects\app.d)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -21,7 +21,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
 I (./Inc/device_can.h)(0x60963638)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (./Inc/flash.h)(0x5FCB00EB)
 F (.\Src\uart1.c)(0x5DA3F312)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\uart1.o --omf_browse .\objects\uart1.crf --depend .\objects\uart1.d)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
@@ -41,10 +41,10 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
-F (.\Src\uart2.c)(0x60A63249)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\uart2.o --omf_browse .\objects\uart2.crf --depend .\objects\uart2.d)
+F (.\Src\uart2.c)(0x60EE5567)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\uart2.o --omf_browse .\objects\uart2.crf --depend .\objects\uart2.d)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -62,7 +62,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
 F (.\Src\uart3.c)(0x5FC89C27)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\uart3.o --omf_browse .\objects\uart3.crf --depend .\objects\uart3.d)
@@ -83,11 +83,11 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
 F (.\Src\crc16_mobus.c)(0x607119A1)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\crc16_mobus.o --omf_browse .\objects\crc16_mobus.crf --depend .\objects\crc16_mobus.d)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -107,10 +107,10 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (./Inc/flash.h)(0x5FCB00EB)
 F (.\Src\flash.c)(0x60CD55D8)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -131,10 +131,10 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
 I (./Inc/flash.h)(0x5FCB00EB)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (C:\Keil_v5\ARM\ARMCC\include\time.h)(0x5475F300)
-F (.\Src\remote-comm.c)(0x60CD558F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\remote-comm.o --omf_browse .\objects\remote-comm.crf --depend .\objects\remote-comm.d)
-I (./Inc/config.h)(0x60C3338B)
+F (.\Src\remote-comm.c)(0x60F91EE8)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\remote-comm.o --omf_browse .\objects\remote-comm.crf --depend .\objects\remote-comm.d)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -154,10 +154,10 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (./Inc/flash.h)(0x5FCB00EB)
 I (./Inc/device_can.h)(0x60963638)
-F (.\Src\uart4.c)(0x608671B5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\uart4.o --omf_browse .\objects\uart4.crf --depend .\objects\uart4.d)
+F (.\Src\uart4.c)(0x60F91531)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\uart4.o --omf_browse .\objects\uart4.crf --depend .\objects\uart4.d)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -175,11 +175,11 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
 F (.\Src\utils.c)(0x5FC89EAC)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\utils.o --omf_browse .\objects\utils.crf --depend .\objects\utils.d)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm3.h)(0x53FC31DA)
@@ -199,7 +199,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (./Inc/uart.h)(0x6059DD3B)
-F (.\Src\device_can.c)(0x609B490E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\device_can.o --omf_browse .\objects\device_can.crf --depend .\objects\device_can.d)
+F (.\Src\device_can.c)(0x60EE89BD)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\device_can.o --omf_browse .\objects\device_can.crf --depend .\objects\device_can.d)
 I (./Inc/device_can.h)(0x60963638)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
@@ -217,14 +217,14 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (./Inc/uart.h)(0x6059DD3B)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (./Inc/flash.h)(0x5FCB00EB)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x5475F2FA)
-F (.\Src\can_comm_ctrl.c)(0x60CD558F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\can_comm_ctrl.o --omf_browse .\objects\can_comm_ctrl.crf --depend .\objects\can_comm_ctrl.d)
+F (.\Src\can_comm_ctrl.c)(0x644500B5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\can_comm_ctrl.o --omf_browse .\objects\can_comm_ctrl.crf --depend .\objects\can_comm_ctrl.d)
 I (./Inc/device_can.h)(0x60963638)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
@@ -242,13 +242,13 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (./Inc/uart.h)(0x6059DD3B)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (./Inc/flash.h)(0x5FCB00EB)
-F (.\Src\sorting_ctrl.c)(0x60CC9198)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\sorting_ctrl.o --omf_browse .\objects\sorting_ctrl.crf --depend .\objects\sorting_ctrl.d)
+F (.\Src\sorting_ctrl.c)(0x64813E8E)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\sorting_ctrl.o --omf_browse .\objects\sorting_ctrl.crf --depend .\objects\sorting_ctrl.d)
 I (./Inc/device_can.h)(0x60963638)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825386C)
 I (D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\RTE_Components.h)(0x60CAB469)
@@ -266,11 +266,11 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm3
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x52F9EB20)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)
 I (./Inc/uart.h)(0x6059DD3B)
-I (./Inc/config.h)(0x60C3338B)
+I (./Inc/config.h)(0x64804D82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
-I (./Inc/MotorDriver.h)(0x60CC87D2)
+I (./Inc/MotorDriver.h)(0x60EE5F6F)
 I (./Inc/flash.h)(0x5FCB00EB)
 F (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\src\misc.c)(0x52F9EB20)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I./Inc-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE-I D:\zw-sorting\SS_v3\SortingSystem-v3.1\sorting_system3_slave\RTE\Device\STM32F103RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_HD-o .\objects\misc.o --omf_browse .\objects\misc.crf --depend .\objects\misc.d)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\StdPeriph_Driver\inc\misc.h)(0x52F9EB20)

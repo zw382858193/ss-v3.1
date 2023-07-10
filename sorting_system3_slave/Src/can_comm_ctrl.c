@@ -13,9 +13,10 @@ void can_comm(void)
 	if(can_recv_buf.Recv_Buf_Len0==CAN_RECV_BUF_LEN){
 		switch(can_recv_buf.CAN_Recv_Buf0[1]){//协议功能
 			case 0x01://win cmd
+				device.goodsnumber++;
 				if(device.id<can_recv_buf.CAN_Recv_Buf0[0]){//读id
-					device.goodsnumber++;
-				}else if(device.id==can_recv_buf.CAN_Recv_Buf0[0]){
+					//device.goodsnumber++;
+				}else if(device.id==can_recv_buf.CAN_Recv_Buf0[0]){// 01 01 00 00 00 00 00 00
 					int j;
 					CanSendMsg[0]='o';
 					CanSendMsg[1]='k';
@@ -25,6 +26,7 @@ void can_comm(void)
 							windows[i].Win=(can_recv_buf.CAN_Recv_Buf0[2]<<24)||(can_recv_buf.CAN_Recv_Buf0[3]<<16)|\
 							(can_recv_buf.CAN_Recv_Buf0[4]<<8)|(can_recv_buf.CAN_Recv_Buf0[5]&0xff);
 							windows[i].goodslist=device.goodsnumber;
+							//device.goodsnumber=0;
 							windows[i].BillCodeAndPortCode[0]='e';
 							windows[i].BillCodeAndPortCode[1]='n';
 							windows[i].BillCodeAndPortCode[2]='d';
@@ -41,6 +43,7 @@ void can_comm(void)
 				break;
 			case 0x02://heartbeat cmd
 				if(device.id==can_recv_buf.CAN_Recv_Buf0[0]){
+					int ret;
 					CanSendMsg[0] = device.id;
 					CanSendMsg[1] = 0x02;//heartbeat cmd
 					CanSendMsg[2] = 0x03;//read byte number
@@ -48,8 +51,10 @@ void can_comm(void)
 					CanSendMsg[4] = device.motor_error_code.servo_error;
 					CanSendMsg[5] = device.status;//0x10 0x20锁格口 0x01~0x0f传感器
 					device.heartbeat=1;
-					Can_Send_Msg(device.id,CanSendMsg,8);
-					
+					ret=Can_Send_Msg(device.id,CanSendMsg,8);
+					if(ret==1){
+						debug_out1("heartbeat fail\r",strlen("heartbeat fail\r"));
+					}
 				}
 				break;
 			case 0x03://send read modbus
@@ -98,39 +103,44 @@ void can_comm(void)
 			case 0x08://send write modbus
 				
 				if(device.id == can_recv_buf.CAN_Recv_Buf0[0] || can_recv_buf.CAN_Recv_Buf0[0]==0x00){
-					if(can_recv_buf.CAN_Recv_Buf0[0]==device.id){//car1
-						if(can_recv_buf.CAN_Recv_Buf0[2]==0x20&&can_recv_buf.CAN_Recv_Buf0[3]==0x08){//修改ID地址 01 08 20 08 00 02 00 00
+					if(can_recv_buf.CAN_Recv_Buf0[0]==device.id&&can_recv_buf.CAN_Recv_Buf0[2]==0x20&&can_recv_buf.CAN_Recv_Buf0[3]==0x08){//car1
+						//修改ID地址 01 08 20 08 00 02 00 00
 							device.id = can_recv_buf.CAN_Recv_Buf0[5];
 							WriteFlashOneWord(FLASH_DEVICE_ID_ADDR,device.id);
-						}
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x00&&can_recv_buf.CAN_Recv_Buf0[3]==0x00){//小车运动状态
-						if(can_recv_buf.CAN_Recv_Buf0[5]==0x00){
+						
+						if(can_recv_buf.CAN_Recv_Buf0[5]==0x00){ //
 							treadmill.work_status=FOREWARD;
+							servo.work_status=START;
 						}else if(can_recv_buf.CAN_Recv_Buf0[5]==0x01){
 							treadmill.work_status=BACKWARD;
-							
+							servo.work_status=START;
 						}else if(can_recv_buf.CAN_Recv_Buf0[5]==0x05){
 							treadmill.work_status=STOP;
+							servo.work_status=STOP;
 						}
-					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x00&&can_recv_buf.CAN_Recv_Buf0[3]==0x01){//伺服运动状态
-						if(can_recv_buf.CAN_Recv_Buf0[5]==0x00){
+					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x00&&can_recv_buf.CAN_Recv_Buf0[3]==0x01){//伺服运动状态 device.id 08 00 01 00 01 00 00
+						if(can_recv_buf.CAN_Recv_Buf0[5]==0x00){//00 08 00 01 00 00 00 00
 							servo.work_status=WIN1;
-						}else if(can_recv_buf.CAN_Recv_Buf0[5]==0x01){
+						}else if(can_recv_buf.CAN_Recv_Buf0[5]==0x01){//00 08 00 01 00 01 00 00
 							servo.work_status=WIN2;
+						}else if(can_recv_buf.CAN_Recv_Buf0[5]==0x03){
+							servo.work_status=START;
 						}else if(can_recv_buf.CAN_Recv_Buf0[5]==0x05){
 							servo.work_status=STOP;
 						}
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x20&&can_recv_buf.CAN_Recv_Buf0[3]==0x01){//设置小车速度
 						treadmill.speed = can_recv_buf.CAN_Recv_Buf0[4]<<8|can_recv_buf.CAN_Recv_Buf0[5];
-						set_mobus_crc(treadmill.SET_SPEED,treadmill.speed,2);
+						//set_mobus_crc(treadmill.SET_SPEED,treadmill.speed,2);
 						WriteFlashOneWord(FLASH_CAR_SPEED_DATA_ADDR,treadmill.speed);
+						treadmill.work_status = SETSPEED;
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x01&&can_recv_buf.CAN_Recv_Buf0[3]==0x90){//设置伺服速度 01 08 01 90 05 dc 
 						servo.speed = can_recv_buf.CAN_Recv_Buf0[4]<<8|can_recv_buf.CAN_Recv_Buf0[5];
-						set_mobus_crc(servo.PosSpeed,servo.speed,4);
+						//set_mobus_crc(servo.PosSpeed,servo.speed,4);
 						WriteFlashOneWord(FLASH_SERVO_MOTOR_SPEED_ADDR,servo.speed);
+						servo.work_status=SETSPEED;
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x01&&can_recv_buf.CAN_Recv_Buf0[3]==0x68){//设置posset
 						servo.position = can_recv_buf.CAN_Recv_Buf0[4]<<24|can_recv_buf.CAN_Recv_Buf0[5]<<16|can_recv_buf.CAN_Recv_Buf0[6]<<8|can_recv_buf.CAN_Recv_Buf0[7];
-						my_sprintf_32("pos",servo.position,1);
 						WriteFlashOneWord(FLASH_SERVO_MOTOR_POSITION_ADDR,servo.position);
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]==0x00&&can_recv_buf.CAN_Recv_Buf0[3]==0x50){//设置伺服加减速
 						servo.adtime = can_recv_buf.CAN_Recv_Buf0[4]<<8|can_recv_buf.CAN_Recv_Buf0[5];
@@ -143,6 +153,8 @@ void can_comm(void)
 					}else if(can_recv_buf.CAN_Recv_Buf0[2]=='i'&&can_recv_buf.CAN_Recv_Buf0[3]=='n'&&can_recv_buf.CAN_Recv_Buf0[4]=='i'&&can_recv_buf.CAN_Recv_Buf0[5]=='t'){//初始化设备 00 08 init
 						initServoLiChuang();
 						Car1init();
+					}else if(can_recv_buf.CAN_Recv_Buf0[2]=='r'&&can_recv_buf.CAN_Recv_Buf0[3]=='e'&&can_recv_buf.CAN_Recv_Buf0[4]=='s'&&can_recv_buf.CAN_Recv_Buf0[5]=='e'&&can_recv_buf.CAN_Recv_Buf0[6]=='t'){//初始化设备 00 08 init
+						reset();
 					}
 				}
 				break;
@@ -156,6 +168,6 @@ void can_comm(void)
 				}
 				break;
 			default:break;
-		}can_recv_buf.Recv_Buf_Len0=0;
+		}memset(can_recv_buf.CAN_Recv_Buf0,0,sizeof(can_recv_buf.CAN_Recv_Buf0));can_recv_buf.Recv_Buf_Len0=0;
 	}
 }

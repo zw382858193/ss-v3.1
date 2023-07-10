@@ -414,6 +414,21 @@
               <FilePath>.\Src\app.c</FilePath>
             </File>
             <File>
+              <FileName>remote-comm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\remote-comm.c</FilePath>
+            </File>
+            <File>
+              <FileName>device_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\device_can.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>UartDriver</GroupName>
+          <Files>
+            <File>
               <FileName>uart1.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\uart1.c</FilePath>
@@ -429,6 +444,16 @@
               <FilePath>.\Src\uart3.c</FilePath>
             </File>
             <File>
+              <FileName>uart4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\uart4.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>multifunction</GroupName>
+          <Files>
+            <File>
               <FileName>crc16_mobus.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\crc16_mobus.c</FilePath>
@@ -439,29 +464,19 @@
               <FilePath>.\Src\flash.c</FilePath>
             </File>
             <File>
-              <FileName>remote-comm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\remote-comm.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Src\uart4.c</FilePath>
-            </File>
-            <File>
               <FileName>utils.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\utils.c</FilePath>
             </File>
             <File>
-              <FileName>device_can.c</FileName>
+              <FileName>MessageQueuing.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Src\device_can.c</FilePath>
+              <FilePath>.\Src\MessageQueuing.c</FilePath>
             </File>
             <File>
-              <FileName>driver.c</FileName>
+              <FileName>ir_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\driver.c</FilePath>
+              <FilePath>.\ir_exti.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -491,6 +506,12 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CAN" Cvendor="Keil" Cversion="3.5.0" condition="STM32F1xx STDPERIPH RCC">
+        <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="EXTI" Cvendor="Keil" Cversion="3.5.0" condition="STM32F1xx STDPERIPH">
         <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.3.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
